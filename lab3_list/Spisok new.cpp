@@ -32,12 +32,17 @@ List::~List()
 		Head = temp; 
 	}
 }
-
+/**
+		\func void List::Add(int x, int ind)
+*/
 void List::Add(int x, int ind) 
 {
 	element *temp = new element; 
 	temp->x = x; 
-	if (ind == 0) Head = temp;
+	if (ind == 0) {
+		temp->Next = Head;
+		Head = temp;
+	}
 	else{
 		element *node = Head;
 		if (ind > 1) {	
@@ -58,7 +63,9 @@ void List::Add(int x, int ind)
 	}
 
 }
-
+/**
+		\func void List::Show(int ind)
+*/
 void List::Show(int ind)
 {
 	element *temp = Head; 
@@ -70,7 +77,9 @@ void List::Show(int ind)
 	}
 	cout << temp->x << endl; 
 }
-
+/**
+		\func void List::Del(int ind)
+*/
 void List::Del(int ind) {
 	if (ind == 0) Head = Head->Next;
 	else{
@@ -86,8 +95,10 @@ void List::Del(int ind) {
 		delete node;
 	}	
 }
-
-void main()
+/**
+		\func int main()
+*/
+int main()
 {
 	int N, ind, dat; 
 	List lst; 

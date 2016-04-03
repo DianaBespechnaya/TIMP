@@ -16,7 +16,7 @@ class Queue
 {
 	element *Head;
 public:
-	Queue() { Head = new element; }
+	Queue() { Head = NULL; }
 	~Queue();
 	void Add(int x);
 	void Show();
@@ -39,10 +39,13 @@ void Queue::Add(int x)
 {
 	element *temp = new element;
 	temp->x = x;
-	element *node = Head;
-	while (node->Next != NULL)
-		node = node->Next;
-	node->Next = temp;
+	if (Head == NULL) Head = temp;
+	else {
+		element *node = Head;
+		while (node->Next != NULL)
+			node = node->Next;
+		node->Next = temp;
+	}
 }
 /**
 		\func void Queue::Show()
@@ -56,9 +59,9 @@ void Queue::Show()
 */
 void Queue::Del()
 {
-	element *node = Head;
+	//element *node = Head;
 	Head = Head->Next;
-	delete node;
+	//delete node;
 
 }
 /**

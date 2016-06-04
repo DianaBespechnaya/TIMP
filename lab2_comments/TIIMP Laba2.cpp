@@ -17,20 +17,25 @@ int _tmain(int argc, _TCHAR* argv[])
 	ifstream fin(s);	
 	while (!fin.eof()) {
 		fin.getline(s, 255);	//считываем из файла строку в s	
-		if ((strstr(s, "\\func")) != NULL) { //проверка на наличие в s "\func"
+		if ((strstr(s, "/**")) != NULL) {  //проверка на наличие в s "/** "
+			if ((strstr(s, "\\func")) == NULL)
+				fin.getline(s, 255);
 			result = strstr(s, "\\func"); //result указывает на то место в s, где стоит \func
-			result+=6;//result теперь указывает на 6 байт правее (перепрыгнули "\func ")
-			if (strstr(result, "*/") != NULL) //проверяем, заканчивается ли данная строка  на "*/"
-			{
-				strcpy(str, result); //копируем result  в str 
+			result += 6;//result теперь указывает на 6 байт правее (перепрыгнули "\func ")
+			strcpy(str, result); //копируем result  в str 
+			if ((strstr(s, "*/")) != NULL){
 				str[strlen(result) - 2] = '\0';// "затираем" */
 				cout << str << endl;
 			}
-			else
-			cout << result << endl;
+			else {
+				fin.getline(s, 255);
+				if ((strstr(s, "*/")) != NULL)
+					cout << str << endl;
+			}
 		}
-	}
 
+	}
+	system("pause");
 	return 0;
 }
 

@@ -6,11 +6,11 @@
 
 using namespace std;
 
-struct element
+typedef struct element
 {
 	int x;
 	element *Next = NULL;
-};
+} element;
 
 class Queue
 {
@@ -94,5 +94,5 @@ int main()
 
 	}
 
-	return 0;
+	system("pause");
 }

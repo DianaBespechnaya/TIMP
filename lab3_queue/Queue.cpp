@@ -1,16 +1,13 @@
-// Queue.cpp: определяет точку входа для консольного приложения.
-//
-
-#include "stdafx.h"
 #include <iostream>
 
 using namespace std;
+typedef struct _element element;
 
-typedef struct element
+struct _element
 {
 	int x;
 	element *Next = NULL;
-} element;
+};
 
 class Queue
 {
